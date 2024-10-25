@@ -48,15 +48,15 @@ namespace lgfx
 #endif
 //----------------------------------------------------------------------------
 
-#if !defined (ARDUINO) || defined (ARDUINO_ARCH_MBED_RP2040) || defined (ARDUINO_ARCH_RP2040)
+// #if !defined (ARDUINO) || defined (ARDUINO_ARCH_MBED_RP2040) || defined (ARDUINO_ARCH_RP2040)
 #define LGFX_PRINTF_ENABLED
-#endif
+// #endif
 
 
   class LGFXBase
-#if defined (ARDUINO)
-  : public Print
-#endif
+// #if defined (ARDUINO)
+//   : public Print
+// #endif
   {
   public:
     LGFXBase(void) = default;
@@ -729,26 +729,26 @@ namespace lgfx
     inline size_t drawCenterString(const char *string, int32_t x, int32_t y                   ) { return draw_string(string, x, y, textdatum_t::top_center); }
     inline size_t drawRightString( const char *string, int32_t x, int32_t y                   ) { return draw_string(string, x, y, textdatum_t::top_right ); }
 
-  #if defined (ARDUINO)
-    inline int32_t textLength(const String& string, int32_t width) { return textLength(string.c_str(), width); }
-    inline int32_t textWidth(const String& string) { return textWidth(string.c_str()); }
-    inline int32_t textWidth(const String& string, const IFont* font) { return textWidth(string.c_str(), font); }
+  // #if defined (ARDUINO)
+  //   inline int32_t textLength(const String& string, int32_t width) { return textLength(string.c_str(), width); }
+  //   inline int32_t textWidth(const String& string) { return textWidth(string.c_str()); }
+  //   inline int32_t textWidth(const String& string, const IFont* font) { return textWidth(string.c_str(), font); }
 
-    [[deprecated("use IFont")]]
-    inline size_t drawString(const String& string, int32_t x, int32_t y, uint8_t      font) { return draw_string(string.c_str(), x, y, _text_style.datum, fontdata[font]); }
-    inline size_t drawString(const String& string, int32_t x, int32_t y, const IFont* font) { return draw_string(string.c_str(), x, y, _text_style.datum,          font ); }
-    inline size_t drawString(const String& string, int32_t x, int32_t y                   ) { return draw_string(string.c_str(), x, y, _text_style.datum); }
+  //   [[deprecated("use IFont")]]
+  //   inline size_t drawString(const String& string, int32_t x, int32_t y, uint8_t      font) { return draw_string(string.c_str(), x, y, _text_style.datum, fontdata[font]); }
+  //   inline size_t drawString(const String& string, int32_t x, int32_t y, const IFont* font) { return draw_string(string.c_str(), x, y, _text_style.datum,          font ); }
+  //   inline size_t drawString(const String& string, int32_t x, int32_t y                   ) { return draw_string(string.c_str(), x, y, _text_style.datum); }
 
-    [[deprecated("use IFont")]] inline size_t drawCentreString(const String& string, int32_t x, int32_t y, uint8_t font) { return draw_string(string.c_str(), x, y, textdatum_t::top_center, fontdata[font]); }
-    [[deprecated("use IFont")]] inline size_t drawCenterString(const String& string, int32_t x, int32_t y, uint8_t font) { return draw_string(string.c_str(), x, y, textdatum_t::top_center, fontdata[font]); }
-    [[deprecated("use IFont")]] inline size_t drawRightString( const String& string, int32_t x, int32_t y, uint8_t font) { return draw_string(string.c_str(), x, y, textdatum_t::top_right , fontdata[font]); }
-    inline size_t drawCentreString(const String& string, int32_t x, int32_t y, const IFont* font) { return draw_string(string.c_str(), x, y, textdatum_t::top_center, font); }
-    inline size_t drawCenterString(const String& string, int32_t x, int32_t y, const IFont* font) { return draw_string(string.c_str(), x, y, textdatum_t::top_center, font); }
-    inline size_t drawRightString( const String& string, int32_t x, int32_t y, const IFont* font) { return draw_string(string.c_str(), x, y, textdatum_t::top_right , font); }
-    inline size_t drawCentreString(const String& string, int32_t x, int32_t y                   ) { return draw_string(string.c_str(), x, y, textdatum_t::top_center); }
-    inline size_t drawCenterString(const String& string, int32_t x, int32_t y                   ) { return draw_string(string.c_str(), x, y, textdatum_t::top_center); }
-    inline size_t drawRightString( const String& string, int32_t x, int32_t y                   ) { return draw_string(string.c_str(), x, y, textdatum_t::top_right ); }
-  #endif
+  //   [[deprecated("use IFont")]] inline size_t drawCentreString(const String& string, int32_t x, int32_t y, uint8_t font) { return draw_string(string.c_str(), x, y, textdatum_t::top_center, fontdata[font]); }
+  //   [[deprecated("use IFont")]] inline size_t drawCenterString(const String& string, int32_t x, int32_t y, uint8_t font) { return draw_string(string.c_str(), x, y, textdatum_t::top_center, fontdata[font]); }
+  //   [[deprecated("use IFont")]] inline size_t drawRightString( const String& string, int32_t x, int32_t y, uint8_t font) { return draw_string(string.c_str(), x, y, textdatum_t::top_right , fontdata[font]); }
+  //   inline size_t drawCentreString(const String& string, int32_t x, int32_t y, const IFont* font) { return draw_string(string.c_str(), x, y, textdatum_t::top_center, font); }
+  //   inline size_t drawCenterString(const String& string, int32_t x, int32_t y, const IFont* font) { return draw_string(string.c_str(), x, y, textdatum_t::top_center, font); }
+  //   inline size_t drawRightString( const String& string, int32_t x, int32_t y, const IFont* font) { return draw_string(string.c_str(), x, y, textdatum_t::top_right , font); }
+  //   inline size_t drawCentreString(const String& string, int32_t x, int32_t y                   ) { return draw_string(string.c_str(), x, y, textdatum_t::top_center); }
+  //   inline size_t drawCenterString(const String& string, int32_t x, int32_t y                   ) { return draw_string(string.c_str(), x, y, textdatum_t::top_center); }
+  //   inline size_t drawRightString( const String& string, int32_t x, int32_t y                   ) { return draw_string(string.c_str(), x, y, textdatum_t::top_right ); }
+  // #endif
 
            size_t drawChar(uint16_t uniCode, int32_t x, int32_t y, uint8_t font);
     inline size_t drawChar(uint16_t uniCode, int32_t x, int32_t y) { int32_t dummy_filled_x = 0; return _font->drawChar(this, x, y, uniCode, &_text_style, &_font_metrics, dummy_filled_x); }
@@ -846,7 +846,7 @@ namespace lgfx
 // print & text support
 //----------------------------------------------------------------------------
 // Arduino Print.h compatible
-  #if !defined (ARDUINO)
+  // #if !defined (ARDUINO)
     size_t print(const char str[])      { return write(str); }
     size_t print(char c)                { return write(c); }
     size_t print(int  n, int base = 10) { return print((long)n, base); }
@@ -885,9 +885,9 @@ namespace lgfx
 
     size_t write(const char* str)                 { return (!str) ? 0 : write((const uint8_t*)str, strlen(str)); }
     size_t write(const char *buf, size_t size)    { return write((const uint8_t *) buf, size); }
-  #else
-    using Print::write;
-  #endif
+  // #else
+  //   using Print::write;
+  // #endif
 
   #if defined (LGFX_PRINTF_ENABLED)
    #ifdef __GNUC__
@@ -902,11 +902,11 @@ namespace lgfx
     size_t vprintf(const char *format, va_list arg);
 
 
-#ifdef ARDUINO
-    void qrcode(const String &string, int32_t x = -1, int32_t y = -1, int32_t width = -1, uint8_t version = 1) {
-      qrcode(string.c_str(), x, y, width, version);
-    }
-#endif
+// #ifdef ARDUINO
+//     void qrcode(const String &string, int32_t x = -1, int32_t y = -1, int32_t width = -1, uint8_t version = 1) {
+//       qrcode(string.c_str(), x, y, width, version);
+//     }
+// #endif
     void qrcode(const char *string, int32_t x = -1, int32_t y = -1, int32_t width = -1, uint8_t version = 1);
 
   #define LGFX_FUNCTION_GENERATOR(drawImg, draw_img) \

@@ -17,9 +17,9 @@ Contributors:
 /----------------------------------------------------------------------------*/
 #pragma once
 
-#if defined ( ARDUINO )
- #include <Arduino.h>
-#endif
+// #if defined ( ARDUINO )
+//  #include <Arduino.h>
+// #endif
 
 #include <stdint.h>
 #include <stddef.h>
@@ -253,59 +253,59 @@ namespace lgfx
 
 //----------------------------------------------------------------------------
 
-#if ( defined (ARDUINO) && defined (Stream_h) ) || defined (ARDUINO_ARCH_RP2040) // RP2040 has no defines for builtin Stream API
+// #if ( defined (ARDUINO) && defined (Stream_h) ) || defined (ARDUINO_ARCH_RP2040) // RP2040 has no defines for builtin Stream API
 
-  struct StreamWrapper : public DataWrapper
-  {
-    void set(Stream* src, uint32_t length = ~0u) { _stream = src; _length = length; _index = 0; }
+//   struct StreamWrapper : public DataWrapper
+//   {
+//     void set(Stream* src, uint32_t length = ~0u) { _stream = src; _length = length; _index = 0; }
 
-    int read(uint8_t *buf, uint32_t len) override
-    {
-      if (len > _length - _index) { len = _length - _index; }
-      if (len == 0) { return 0; }
-      len = _stream->readBytes(buf, len);
-      _index += len;
-      return len;
-    }
+//     int read(uint8_t *buf, uint32_t len) override
+//     {
+//       if (len > _length - _index) { len = _length - _index; }
+//       if (len == 0) { return 0; }
+//       len = _stream->readBytes(buf, len);
+//       _index += len;
+//       return len;
+//     }
 
-    int read(uint8_t *buf, uint32_t maximum_len, uint32_t required_len) override
-    {
-      uint32_t len = maximum_len;
-      if (len > _length - _index) { len = _length - _index; }
-      if (len == 0) { return 0; }
+//     int read(uint8_t *buf, uint32_t maximum_len, uint32_t required_len) override
+//     {
+//       uint32_t len = maximum_len;
+//       if (len > _length - _index) { len = _length - _index; }
+//       if (len == 0) { return 0; }
 
-      int32_t tmp = _stream->available();
-      if (0 < tmp && (len > (uint32_t)tmp)) { len = tmp; }
-      if (len < required_len) { len = required_len; }
-      len = _stream->readBytes(buf, len);
-      _index += len;
-      return len;
-    }
+//       int32_t tmp = _stream->available();
+//       if (0 < tmp && (len > (uint32_t)tmp)) { len = tmp; }
+//       if (len < required_len) { len = required_len; }
+//       len = _stream->readBytes(buf, len);
+//       _index += len;
+//       return len;
+//     }
 
-    void skip(int32_t offset) override
-    {
-      if (0 >= offset) { return; }
-      _index += offset;
-      char dummy[64];
-      size_t len = ((offset - 1) & 63) + 1;
-      do
-      {
-        _stream->readBytes(dummy, len);
-        offset -= len;
-        len = 64;
-      } while (offset);
-    }
-    bool seek(uint32_t offset) override { if (offset < _index) { return false; } skip(offset - _index); return true; }
-    void close() override { }
-    int32_t tell(void) override { return _index; }
+//     void skip(int32_t offset) override
+//     {
+//       if (0 >= offset) { return; }
+//       _index += offset;
+//       char dummy[64];
+//       size_t len = ((offset - 1) & 63) + 1;
+//       do
+//       {
+//         _stream->readBytes(dummy, len);
+//         offset -= len;
+//         len = 64;
+//       } while (offset);
+//     }
+//     bool seek(uint32_t offset) override { if (offset < _index) { return false; } skip(offset - _index); return true; }
+//     void close() override { }
+//     int32_t tell(void) override { return _index; }
 
-  protected:
-    Stream* _stream;
-    uint32_t _index;
-    uint32_t _length = 0;
-  };
+//   protected:
+//     Stream* _stream;
+//     uint32_t _index;
+//     uint32_t _length = 0;
+//   };
 
-#endif
+// #endif
 
 //----------------------------------------------------------------------------
 
