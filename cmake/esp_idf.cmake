@@ -7,6 +7,7 @@ file(GLOB_RECURSE AAA_SRCS
 # Include
 set(AAA_INCS
     ${AAA_ROOT_DIR}/src/
+    ${AAA_ROOT_DIR}/src/lgfx/v1/
 )
 
 # Public component requirement
