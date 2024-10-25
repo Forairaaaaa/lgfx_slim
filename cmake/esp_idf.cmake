@@ -1,27 +1,27 @@
 # Src files
-file(GLOB_RECURSE AAA_SRCS
-    ${AAA_ROOT_DIR}/src/*.c
-    ${AAA_ROOT_DIR}/src/*.cc
-    ${AAA_ROOT_DIR}/src/*.cpp
+file(GLOB_RECURSE LGFX_SLIM_SRCS
+    ${LGFX_SLIM_ROOT_DIR}/src/*.c
+    ${LGFX_SLIM_ROOT_DIR}/src/*.cc
+    ${LGFX_SLIM_ROOT_DIR}/src/*.cpp
 )
 # Include
-set(AAA_INCS
-    ${AAA_ROOT_DIR}/src/
-    ${AAA_ROOT_DIR}/src/lgfx/v1/
+set(LGFX_SLIM_INCS
+    ${LGFX_SLIM_ROOT_DIR}/src/
+    ${LGFX_SLIM_ROOT_DIR}/src/lgfx/v1/
 )
 
 # Public component requirement
-set(AAA_REQUIRES
+set(LGFX_SLIM_REQUIRES
 )
 
 # Private component requirement
-set(AAA_PRIV_REQUIRES
+set(LGFX_SLIM_PRIV_REQUIRES
 )
 
 # Register component
 idf_component_register(
-    SRCS ${AAA_SRCS}
-    INCLUDE_DIRS ${AAA_INCS}
-    REQUIRES ${AAA_REQUIRES}
-    PRIV_REQUIRES ${AAA_PRIV_REQUIRES}
+    SRCS ${LGFX_SLIM_SRCS}
+    INCLUDE_DIRS ${LGFX_SLIM_INCS}
+    REQUIRES ${LGFX_SLIM_REQUIRES}
+    PRIV_REQUIRES ${LGFX_SLIM_PRIV_REQUIRES}
 )
