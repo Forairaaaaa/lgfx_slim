@@ -1,4 +1,4 @@
-project(AAA)
+project(lgfx_slim)
 
 # Src files
 file(GLOB_RECURSE AAA_SRCS
@@ -9,6 +9,7 @@ file(GLOB_RECURSE AAA_SRCS
 # Include
 set(AAA_INCS
     ${AAA_ROOT_DIR}/src/
+    ${AAA_ROOT_DIR}/src/lgfx/v1/
 )
 
 
